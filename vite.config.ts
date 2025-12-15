@@ -12,11 +12,7 @@ export default defineConfig(({ mode }) => {
       preview: {
         host: '0.0.0.0',
         port: parseInt(process.env.PORT || '8080'),
-        allowedHosts: [
-          '.run.app', // Erlaubt alle Cloud Run Domains
-          'localhost',
-          '127.0.0.1'
-        ]
+        allowedHosts: true // Erlaubt alle Hosts - empfohlen für Cloud Run
       },
       plugins: [react()],
       define: {
