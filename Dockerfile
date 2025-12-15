@@ -15,6 +15,9 @@ RUN npm run build
 # Production stage
 FROM node:20-alpine AS production
 
+# curl für Healthcheck installieren
+RUN apk add --no-cache curl
+
 # Non-root user erstellen für Sicherheit
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
@@ -33,12 +36,13 @@ COPY --from=builder /app/node_modules ./node_modules
 RUN chown -R nextjs:nodejs /app
 USER nextjs
 
-# Port exposing (Cloud Run erwartet dies)
-EXPOSE 3030
+# Port von Cloud Run verwenden (standardmäßig 8080)
+ENV PORT=8080
+EXPOSE $PORT
 
 # Gesundheitscheck für Cloud Run
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:3030/ || exit 1
+  CMD curl -f http://localhost:$PORT/ || exit 1
 
-# Vite preview starten für production
-CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "3030"]
+# Vite preview starten für production mit dynamischem Port
+CMD ["sh", "-c", "npm run preview -- --host 0.0.0.0 --port $PORT"]
