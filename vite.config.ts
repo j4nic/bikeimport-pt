@@ -9,13 +9,14 @@ export default defineConfig(({ mode }) => {
         port: 3030,
         host: '0.0.0.0',
         strictPort: false,
+        allowedHosts: ['bikeimport-prototype-483299072980.asia-east2.run.app'],
       },
       preview: {
         host: '0.0.0.0',
         port: parseInt(process.env.PORT || '8080'),
         strictPort: true,
         open: false,
-        allowedHosts: true
+        allowedHosts: ['bikeimport-prototype-483299072980.asia-east2.run.app']
       },
       plugins: [react()],
       define: {
