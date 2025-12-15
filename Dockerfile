@@ -4,9 +4,9 @@ FROM node:20-alpine AS builder
 # Arbeitsverzeichnis erstellen
 WORKDIR /app
 
-# Package files kopieren und dependencies installieren
+# Package files kopieren und alle dependencies installieren (inkl. devDependencies für build)
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci
 
 # Source code kopieren und build erstellen
 COPY . .
