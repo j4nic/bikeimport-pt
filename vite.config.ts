@@ -12,7 +12,13 @@ export default defineConfig(({ mode }) => {
       preview: {
         host: '0.0.0.0',
         port: parseInt(process.env.PORT || '8080'),
-        allowedHosts: true // Erlaubt alle Hosts - empfohlen für Cloud Run
+        allowedHosts: [
+          'localhost',
+          '0.0.0.0',
+          '*.run.app', // Allows all Google Cloud Run domains
+          'bikeimport-prototype-483299072980.asia-east2.run.app',
+          'https://bikeimport-prototype-483299072980.asia-east2.run.app'
+        ]
       },
       plugins: [react()],
       define: {
