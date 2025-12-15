@@ -8,17 +8,14 @@ export default defineConfig(({ mode }) => {
       server: {
         port: 3030,
         host: '0.0.0.0',
+        strictPort: false,
       },
       preview: {
         host: '0.0.0.0',
         port: parseInt(process.env.PORT || '8080'),
-        allowedHosts: [
-          'localhost',
-          '0.0.0.0',
-          '*.run.app', // Allows all Google Cloud Run domains
-          'bikeimport-prototype-483299072980.asia-east2.run.app',
-          'https://bikeimport-prototype-483299072980.asia-east2.run.app'
-        ]
+        strictPort: true,
+        open: false,
+        allowedHosts: true
       },
       plugins: [react()],
       define: {

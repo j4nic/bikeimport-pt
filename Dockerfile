@@ -38,11 +38,13 @@ USER nextjs
 
 # Port von Cloud Run verwenden (standardmäßig 8080)
 ENV PORT=8080
+ENV VITE_HOST=0.0.0.0
+ENV DANGEROUSLY_DISABLE_HOST_CHECK=true
 EXPOSE $PORT
 
 # Gesundheitscheck für Cloud Run
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:$PORT/ || exit 1
 
-# Vite preview starten für production mit dynamischem Port
-CMD ["sh", "-c", "npm run preview -- --host 0.0.0.0 --port $PORT"]
+# Vite preview starten für production mit dynamischem Port und explicit host configuration
+CMD ["sh", "-c", "npm run preview -- --host 0.0.0.0 --port $PORT --strictPort"]
