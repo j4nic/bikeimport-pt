@@ -29,7 +29,7 @@ function App() {
       <div className="h-screen w-screen flex items-center justify-center bg-slate-50 text-slate-500">
         <div className="flex flex-col items-center gap-4">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          <p className="text-sm font-medium animate-pulse">Lade PriceCompass Daten...</p>
+          <p className="text-sm font-medium animate-pulse">Lade BIKEIMPORT Daten...</p>
         </div>
       </div>
     );

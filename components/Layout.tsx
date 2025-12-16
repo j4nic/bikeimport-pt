@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { LayoutDashboard, ShoppingCart, Settings, Menu, X, Database, PieChart } from 'lucide-react';
+import BikeImportLogo from './BikeImportLogo';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -14,7 +15,6 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, onTabChange }) => 
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'articles', label: 'Artikel-Explorer', icon: Database },
     { id: 'assortment', label: 'Sortiments-Vergleich', icon: PieChart },
-    { id: 'competitors', label: 'Wettbewerber-Feed', icon: ShoppingCart },
     { id: 'settings', label: 'Konfiguration', icon: Settings },
   ];
 
@@ -29,11 +29,11 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, onTabChange }) => 
         <div className="p-4 flex items-center justify-between border-b border-slate-700 h-16">
           {isSidebarOpen ? (
             <div className="flex items-center gap-2">
-               <div className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center font-bold">PC</div>
-               <span className="font-bold text-lg tracking-tight">PriceCompass</span>
+               <BikeImportLogo size={32} />
+               <span className="font-bold text-lg tracking-tight">BIKEIMPORT</span>
             </div>
           ) : (
-            <div className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center font-bold mx-auto">PC</div>
+            <BikeImportLogo size={32} className="mx-auto" />
           )}
           <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="text-slate-400 hover:text-white">
             {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
